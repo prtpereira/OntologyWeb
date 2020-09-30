@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  script(src="/javascripts/jquery-3.2.1.min.js")
+  script(src="/javascripts/ajax.js")
+  
+  div(class="w3-container")
+    header(class="w3-container w3-center w3-teal")
+        h1 Detalhes sobre o indivíduo (IRI/Nascimento)
+  div(class="w3-container")
+        div(class="w3-col s8 w3-padding")
+          div(class="w3-card-4")
+              header(class="w3-container w3-teal")
+                  - var colunas= res.head.vars
+                  
+                      -for (var key in res.results.bindings) {
+                          -var linha= res.results.bindings[key]
+                          -for(var col in colunas) {
+                              -if (colunas[col] in linha) {
+                                  div(class="w3-col s16 w3-padding")
+                                    div(class="w3-card-4")
+                                      l1= linha[colunas[col]].value
+                              -}
+                              
+                          -}
+                      -}
